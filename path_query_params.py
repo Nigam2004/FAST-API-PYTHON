@@ -39,3 +39,25 @@ def student_info(s_id:int):
         "s_rollno":profile["roll_no"],
         "s_grade":profile["grade"]
     }
+
+student_dtl=[
+    {"id":101,"name":"nigam","roll_no":20,"grade":"A","class_":"7th"},
+    {"id":102,"name":"raj","roll_no":22,"grade":"A","class_":"7th"},
+    {"id":103,"name":"suman","roll_no":26,"grade":"c","class_":"8th"},
+    {"id":104,"name":"deepak","roll_no":24,"grade":"A","class_":"7th"},
+    {"id":105,"name":"ram","roll_no":28,"grade":"c","class_":"8th"},
+]
+
+@app.get("/s_dtl")
+# to get the data:-http://127.0.0.1:8000/s_dtl?grade=A&class_=7th
+def s_dtl(grade:str,class_:str):
+   filtered=[ s for s in student_dtl
+            if s["grade"]==grade and s["class_"]==class_ ] 
+   print(filtered)
+   return{
+       "grade":grade,
+        "class_":class_,
+        "count":len(filtered),
+        "res":filtered
+   }
+    
