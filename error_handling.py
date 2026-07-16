@@ -46,9 +46,18 @@ def su_suv(s_sub:student_sub):
                 "error":"subject is empty please fill the subject"
             }
         )
-    return {
-        "student":student_deatails[s_sub.s_id],
-        "mark":s_sub.mark,
-    }
+    try:
+        student_deatails[s_sub.s_id]["mark"]=s_sub.mark
+        return {
+            "student":student_deatails[s_sub.s_id],
+            "mark":s_sub.mark,
+        }
+    except Exception as err:
+        raise HTTPException(
+            status_code=400,
+            detail=f"error found{err}"
+
+        )
+ 
     
     
