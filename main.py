@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from database import products
 
 app = FastAPI()
 
@@ -21,3 +22,27 @@ def customer(customer_id=int):
          "Cust_mob":"12346789"
 
     }
+
+
+# DatBase-connection-mongodb
+
+@app.post("/products")
+async def create_product(product: dict):
+
+    result = await products.insert_one(product)
+
+    return {
+        "id": str(result.inserted_id)
+    }
+
+@app.get("/products")
+async def get_products():
+
+    data = []
+
+    async for product in products.find():
+
+        product["_id"] = str(product["_id"])
+        data.append(product)
+
+    return data
