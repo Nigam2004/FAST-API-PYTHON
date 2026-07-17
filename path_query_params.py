@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Query
 
 app=FastAPI()
 
@@ -29,7 +29,7 @@ def student_info(student_id:int):
 @app.get("/s_detail")
 #to get the data:- http://127.0.0.1:8000/s_detail?s_id=102
 # to get error msg:-http://127.0.0.1:8000/s_detail?s_id=105
-def student_info(s_id:int):
+def student_info(s_id:int=Query()):
     if s_id not in student_deatails:
         return{"error":f"student details not found for student id {s_id}" }
     profile=student_deatails[s_id]

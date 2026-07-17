@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-## pydantic basicaly used for validaye the data type of request body part ,if ther is any missmatch in data type it rsponds with error
+## pydantic basicaly used for validate the data type of request body part ,if ther is any missmatch in data type it rsponds with error
 
 app=FastAPI()
 
