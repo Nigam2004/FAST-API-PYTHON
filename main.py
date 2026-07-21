@@ -44,5 +44,4 @@ async def get_products():
 
         product["_id"] = str(product["_id"])
         data.append(product)
-
     return data
